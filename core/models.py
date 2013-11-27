@@ -20,7 +20,7 @@ class Place(models.Model):
     )
 
     def __unicode__(self):
-        pass
+        return unicode(self.venue_id)
 
 
 class Consumer(models.Model):
@@ -36,11 +36,11 @@ class Consumer(models.Model):
 
     sex = models.CharField(
         max_length="1",
-        choices=("m", _("Male"), "f", _("Female"))
+        choices=(("m", _("Male")), ("f", _("Female")))
     )
 
     def __unicode__(self):
-        pass
+        return unicode(self.foursquare_uid)
 
 
 class Rating(models.Model):

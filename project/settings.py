@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'south',
 
     'core',
+    'portal',
 )
 
 MIDDLEWARE_CLASSES = (

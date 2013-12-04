@@ -1,7 +1,13 @@
 import foursquare
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.views.generic import TemplateView
+
 from project import settings
+
+
+class HomepageView(TemplateView):
+    template_name = "portal/base.html"
 
 
 def fq_login(request):

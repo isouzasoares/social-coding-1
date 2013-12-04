@@ -16,6 +16,10 @@ class PlaceListView(ListView):
     template_name = "portal/listagem.html"
 
 
+class LikeView(ListView):
+    model = Place
+    template_name = "portal/curtir.html"
+
 def fq_login(request):
     client = _create_fq_client()
     auth_uri = client.oauth.auth_url()

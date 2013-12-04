@@ -1,4 +1,6 @@
 import foursquare
+
+from django.db.models import Count
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, ListView
 
@@ -14,6 +16,14 @@ class PlaceListView(ListView):
     model = Place
     template_name = "portal/listagem.html"
 
+    # 4 estabelecimentos mais avaliados
+    qs = Place.objects.annotate(num_ratings=Count('rating'))
+    queryset = qs.order_by('-num_ratings')[:4]
+
+
+class LikeView(ListView):
+    model = Place
+    template_name = "portal/curtir.html"
 
 def fq_login(request):
     client = _create_fq_client()

@@ -1,9 +1,8 @@
 import foursquare
 from django.shortcuts import redirect
-from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView
 
-from .models import Place
+from .models import Place, Consumer
 from project import settings
 
 
@@ -28,9 +27,13 @@ def fq_auth(request):
     access_token = client.oauth.get_token(code)
     client.set_access_token(access_token)
 
-    # Get the user's data
+    # Get the foursquare's data
     user = client.users()
-    return redirect("/listagem/")
+    consumer_id = user['user']['id']
+    consumer_gender = user['user']['gender'][:1]
+    
+    # Consumer(foursquare_uid=consumer_id, sex=consumer_gender)
+    return redirect('/listagem/')
 
 
 def _create_fq_client():

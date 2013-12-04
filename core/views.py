@@ -7,7 +7,7 @@ from project import settings
 
 
 class HomepageView(TemplateView):
-    template_name = "portal/base.html"
+    template_name = "portal/index.html"
 
 
 def fq_login(request):

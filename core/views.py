@@ -1,13 +1,19 @@
 import foursquare
 from django.shortcuts import redirect
 from django.http import HttpResponse
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
+from .models import Place
 from project import settings
 
 
 class HomepageView(TemplateView):
-    template_name = "portal/base.html"
+    template_name = "portal/index.html"
+
+
+class PlaceListView(ListView):
+    model = Place
+    template_name = "portal/listagem.html"
 
 
 def fq_login(request):
@@ -24,7 +30,7 @@ def fq_auth(request):
 
     # Get the user's data
     user = client.users()
-    return HttpResponse('Usuario logado %s' % (user['user']['id'], ))
+    return redirect("/listagem/")
 
 
 def _create_fq_client():
